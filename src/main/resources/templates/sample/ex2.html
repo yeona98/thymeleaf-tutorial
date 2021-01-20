@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .target {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>반복문</h3>
+    <ul>
+        <li th:each="dto, state: ${list}" th:if="${dto.sno % 5 == 0}">
+            [[${state.index}]] : [[${dto}]]
+        </li>
+    </ul>
+
+    <h3>제어문</h3>
+    <ul>
+        <li th:each="dto, state: ${list}">
+            <span th:if="${dto.sno % 5 == 0}" th:text="${'---------'+dto.sno}"></span>
+            <span th:unless="${dto.sno % 5 == 0}" th:text="${dto.first}"></span>
+        </li>
+    </ul>
+
+    <h3>삼항연산자</h3>
+    <ul>
+        <li th:each="dto, state: ${list}" th:text="${dto.sno % 5 == 0} ? ${'----'+dto.sno} : ${dto.first}">
+            [[${state.index}]] : [[${dto}]]
+        </li>
+    </ul>
+    <ul>
+        <li th:each="dto, state: ${list}" th:class="${dto.sno % 5 == 0} ? 'target'" th:text="${dto}">
+        </li>
+    </ul>
+
+    <h3>th:block</h3>
+    <ul>
+        <th:block th:each="dto: ${list}">
+            <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></li>
+        </th:block>
+    </ul>
+
+    <h3>숫자 처리: #numbers</h3>
+    <ul>
+        <li th:each="dto: ${list}">
+            [[${#numbers.formatInteger(dto.sno, 5)}]]
+        </li>
+    </ul>
+
+
+</body>
+</html>
