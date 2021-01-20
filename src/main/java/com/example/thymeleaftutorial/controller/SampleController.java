@@ -23,7 +23,7 @@ public class SampleController {
         log.info("show /ex1");
     }
 
-    @GetMapping({"/ex2", "exLink"})
+    @GetMapping({"/ex2", "/exLink"})
     public void exModel(Model model) {
         List<SampleDTO> list = IntStream.rangeClosed(1, 20).asLongStream()
                 .mapToObj(i -> {
@@ -59,7 +59,7 @@ public class SampleController {
         log.info("show /ex3");
     }
 
-    @GetMapping({"/exLayout1", "/exLayout2", "/exTemplate"})
+    @GetMapping({"/exLayout1", "/exLayout2", "/exTemplate", "/exSidebar"})
     public void exLayout1() {
         log.info("show /exLayout");
     }
